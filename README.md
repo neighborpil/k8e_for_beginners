@@ -26,7 +26,7 @@ $ kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 #### 도커 이미지는 어디에 있나?
 - https://hub.docker.com/u/neighborpil 여기에 있다
 
-#### 매번 새로운 클러스터를 생성하는 것이 귀찮다면
+#### 매번 새로운 클러스터를 생성하는 것이 귀찮다면(autopilot이 아닐 경우에만 사용)
 - 아래의 방식으로 클러스터의 노드를 0으로 감소시킨 후 다시 시작할때 노드의 숫자를 증가시키면 됨
 
 ```
@@ -37,9 +37,9 @@ $ gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> 
 
 
 -- make it zero
-$ gcloud container clusters resize --zone us-central1 autopilot-cluster-1 --num-nodes=0
+$ gcloud container clusters resize --zone us-central1 hello-world-cluster-1 --num-nodes=0
 - increase nodes
-$ gcloud container clusters resize --zone us-central1 autopilot-cluster-1 --num-nodes=1
+$ gcloud container clusters resize --zone us-central1 hello-world-cluster-1 --num-nodes=1
 ```
 
 ### 이벤트 보기
