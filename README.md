@@ -103,14 +103,81 @@ NAME                                    READY   STATUS    RESTARTS   AGE   IP   
 hello-world-rest-api-6755b7c4b7-5h7pb   1/1     Running   0          26m   10.21.128.11   gk3-autopilot-cluster-1-pool-2-228581d3-lf2p   <none>           <none>
 ```
 
-- 쿠버네티스 pod의 상세설명 보기
+- 쿠버네티스 pod의 상세설명 보기(describe 명령어)
 ```
 $ kubectl get pods -- pod의 이름 표시
 
 NAME                                    READY   STATUS    RESTARTS   AGE
 hello-world-rest-api-6755b7c4b7-5h7pb   1/1     Running   0          31m
 
-$ kubectl **describe** hello-world-rest-api-6755b7c4b7-5h7pb
+$ kubectl describe hello-world-rest-api-6755b7c4b7-5h7pb
+
+
+Name:             hello-world-rest-api-6755b7c4b7-5h7pb
+Namespace:        default -- isolation에 관련, dev, qa, production 분리할때
+Priority:         0
+Service Account:  default
+Node:             gk3-autopilot-cluster-1-pool-2-228581d3-lf2p/10.128.0.6
+Start Time:       Sat, 11 Jan 2025 08:24:56 +0000
+Labels:           app=hello-world-rest-api
+                  pod-template-hash=6755b7c4b7
+Annotations:      <none> -- 배포시의 이름같은 것
+Status:           Running -- 현재의 상태
+SeccompProfile:   RuntimeDefault
+IP:               10.21.128.11
+IPs:
+  IP:           10.21.128.11
+Controlled By:  ReplicaSet/hello-world-rest-api-6755b7c4b7
+Containers:
+  hello-world-rest-api:
+    Container ID:   containerd://d912641ce70fabfedb794f3299b7f6483302f949dd7a42095ed43d1bb6c44c39
+    Image:          in28min/hello-world-rest-api:0.0.1.RELEASE
+    Image ID:       docker.io/in28min/hello-world-rest-api@sha256:00469c343814aabe56ad1034427f546d43bafaaa11208a1eb0720993743f72be
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Sat, 11 Jan 2025 08:25:23 +0000
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      ephemeral-storage:  1Gi
+    Requests:
+      cpu:                500m
+      ephemeral-storage:  1Gi
+      memory:             2Gi
+    Environment:          <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-qhkrw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-qhkrw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 kubernetes.io/arch=amd64:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age                From                                   Message
+  ----     ------            ----               ----                                   -------
+  Normal   TriggeredScaleUp  31m                cluster-autoscaler                     pod triggered scale-up: [{https://www.googleapis.com/compute/v1/projects/the-name-443314-c0/zones/us-central1-a/instanceGroups/gk3-autopilot-cluster-1-pool-2-228581d3-grp 0->1 (max: 1000)}]
+  Warning  FailedScheduling  30m (x7 over 31m)  gke.io/optimize-utilization-scheduler  no nodes available to schedule pods
+  Warning  FailedScheduling  30m                gke.io/optimize-utilization-scheduler  0/1 nodes are available: 1 node(s) had untolerated taint {node.kubernetes.io/not-ready: }. preemption: 0/1 nodes are available: 1 Preemption is not helpful for scheduling.
+  Normal   Scheduled         30m                gke.io/optimize-utilization-scheduler  Successfully assigned default/hello-world-rest-api-6755b7c4b7-5h7pb to gk3-autopilot-cluster-1-pool-2-228581d3-lf2p
+  Normal   Pulling           30m                kubelet                                Pulling image "in28min/hello-world-rest-api:0.0.1.RELEASE"
+  Normal   Pulled            29m                kubelet                                Successfully pulled image "in28min/hello-world-rest-api:0.0.1.RELEASE" in 2.049s (14.758s including waiting). Image size: 88504325 bytes.
+  Normal   Created           29m                kubelet                                Created container hello-world-rest-api
+  Normal   Started           29m                kubelet                                Started container hello-world-rest-api
 ```
 
 
