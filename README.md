@@ -34,6 +34,12 @@ $ kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
 $ gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> --num-nodes=0
 - increase nodes
 $ gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> --num-nodes=3
+
+
+-- make it zero
+$ gcloud container clusters resize --zone us-central1 hello-world-rest-api --num-nodes=0
+- increase nodes
+$ gcloud container clusters resize --zone us-central1 hello-world-rest-api --num-nodes=3
 ```
 
 ### 이벤트 보기
