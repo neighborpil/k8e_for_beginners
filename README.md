@@ -37,9 +37,9 @@ $ gcloud container clusters resize --zone <name_of_zone> <name_of_your_cluster> 
 
 
 -- make it zero
-$ gcloud container clusters resize --zone us-central1 hello-world-rest-api --num-nodes=0
+$ gcloud container clusters resize --zone us-central1 autopilot-cluster-1 --num-nodes=0
 - increase nodes
-$ gcloud container clusters resize --zone us-central1 hello-world-rest-api --num-nodes=3
+$ gcloud container clusters resize --zone us-central1 autopilot-cluster-1 --num-nodes=1
 ```
 
 ### 이벤트 보기
